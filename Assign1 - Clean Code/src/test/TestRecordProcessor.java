@@ -29,6 +29,7 @@ public class TestRecordProcessor {
 		try{
 			result = EmployeeRecordImporter.importEmployeeRecordsFromFile("./src/data1.txt");
 		}catch(Exception e){
+			System.out.println(e.getMessage());
 			fail("Error processing valid input");
 		}
 		assertEquals(expectedFromData1, result);

@@ -15,29 +15,16 @@ import models.EmployeeImportSummary;
  *
  */
 public class EmployeeRecordImporter {
-	/**
-	 * 
-	 */
+	
 	public static List<Employee> employees = new ArrayList<Employee>();
 	
-	/**
-	 * 
-	 */
-	private static EmployeeImportSummary importSummary;
+	private static Scanner recordScanner;
 	
-	/**
-	 * 
-	 */
 	private static final int FIRST_NAME_INDEX = 0;
 	private static final int LAST_NAME_INDEX = 1;
 	private static final int AGE_INDEX = 2;
 	private static final int PAY_TYPE_INDEX = 3;
 	private static final int PAY_AMOUNT_INDEX = 4;
-	
-	/**
-	 * 
-	 */
-	private static Scanner recordScanner;
 	
 	/**
 	 * 
@@ -49,9 +36,7 @@ public class EmployeeRecordImporter {
 		
 		importEmployees(employeeRecordFilePath);
 		
-		importSummary = EmployeeImportSummary.createImportSummaryFromListOfEmployees(employees);
-	
-		return importSummary.getSummary();
+		return  EmployeeImportSummary.generateEmployeeImportSummary(employees);
 	}
 	
 	/**
@@ -63,7 +48,6 @@ public class EmployeeRecordImporter {
 		try {
 			recordScanner = new Scanner(new File(employeeRecordFilePath));
 		} catch (FileNotFoundException e) {
-			System.err.println(e.getMessage());
 			throw new Exception("Invalid input file supplied");
 		}
 
