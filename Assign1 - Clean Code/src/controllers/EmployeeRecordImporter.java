@@ -39,11 +39,6 @@ public class EmployeeRecordImporter {
 		return  EmployeeImportSummary.generateEmployeeImportSummary(employees);
 	}
 	
-	/**
-	 * 
-	 * @param employeeRecordFilePath
-	 * @throws Exception
-	 */
 	private static void importEmployees(String employeeRecordFilePath) throws Exception{
 		try {
 			recordScanner = new Scanner(new File(employeeRecordFilePath));
@@ -69,11 +64,6 @@ public class EmployeeRecordImporter {
 		
 	}
 	
-	/**
-	 * 
-	 * @param record
-	 * @throws Exception
-	 */
 	private static void createEmployeeFromRecord(String record) throws Exception{
 		
 		int employeeAge = 0;
@@ -104,9 +94,6 @@ public class EmployeeRecordImporter {
 		
 	}
 	
-	/**
-	 * 
-	 */
 	private static void sortEmployeesByLastName(){
 		employees.sort((empl1, empl2) -> empl1.getLastName().compareTo(empl2.getLastName()));
 	}

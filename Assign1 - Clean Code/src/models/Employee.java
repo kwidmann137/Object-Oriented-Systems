@@ -7,6 +7,14 @@ public class Employee {
 	private String payType;
 	private double payAmount;
 	
+	/**
+	 * 
+	 * @param first
+	 * @param last
+	 * @param age
+	 * @param type
+	 * @param amt
+	 */
 	public Employee (String first, String last, int age, String type, double amt){
 		this.setFirstName(first);
 		this.setLastName(last);
@@ -54,7 +62,11 @@ public class Employee {
 	public void setPayAmount(double payAmount) {
 		this.payAmount = payAmount;
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String printEmployeeInformationAsTableRow(){
 		return String.format("%-30s %-3d  %-12s $%12.2f\n", firstName + " " + lastName, age
 				, payType, payAmount);

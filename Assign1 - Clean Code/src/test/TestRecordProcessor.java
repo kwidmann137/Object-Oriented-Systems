@@ -43,7 +43,6 @@ public class TestRecordProcessor {
 		}catch(Exception e){
 			assertEquals(e.getMessage(), "No records found in data file");
 		}
-		
 	}
 
 	@Test

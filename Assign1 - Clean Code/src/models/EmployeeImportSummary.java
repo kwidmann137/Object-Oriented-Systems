@@ -88,9 +88,13 @@ public class EmployeeImportSummary {
 		}
 		
 		SortedSet<String> payTypes = new TreeSet<String>(paySumByType.keySet());
-//		ToDo: Fix ordering
+		Double payAverage = 0.0;
+		String payTypeString = "";
 		for(String payType : payTypes){
-			importSummary.append(String.format("Average %s:  $%12.2f\n", payType.toLowerCase(), paySumByType.get(payType).getAverage()));
+			payAverage = paySumByType.get(payType).getAverage();
+			payType = payType.equals("Hourly") ? "hourly wage" : payType;
+			payTypeString = "Average " + payType.toLowerCase() + ":";
+			importSummary.append(String.format("%-20s $%12.2f\n", payTypeString, payAverage));
 		}
 	}
 	
@@ -111,27 +115,18 @@ public class EmployeeImportSummary {
 		for(Employee e : employees){
 			mapNameToCount(e.getFirstName());
 		}
-
-		importSummary.append(String.format("\nFirst names with more than one person sharing it:\n"));
 		
-		if(!nameCount.isEmpty()) {
-			generateSimilairNamesFromMap();
-		} else { 
-			importSummary.append(String.format("All first names are unique"));
-		}
+		generateNameCountReportString("First");
 
+		
 		nameCount.clear();
-
+		
 		for(Employee e : employees){
 			mapNameToCount(e.getLastName());
 		}
 		
-		importSummary.append(String.format("\nLast names with more than one person sharing it:\n"));
-		if(!nameCount.isEmpty()) {
-			generateSimilairNamesFromMap();
-		} else { 
-			importSummary.append(String.format("All last names are unique"));
-		}
+		generateNameCountReportString("Last");
+		
 	}
 
 	private static void mapNameToCount(String name){
@@ -139,6 +134,16 @@ public class EmployeeImportSummary {
 			nameCount.put(name, nameCount.get(name) + 1);
 		}else{
 			nameCount.put(name, 1);
+		}
+	}
+	
+	private static void generateNameCountReportString(String nameType){
+		importSummary.append(String.format("\n%s names with more than one person sharing it:\n", nameType));
+		
+		if(!nameCount.isEmpty()) {
+			generateSimilairNamesFromMap();
+		} else { 
+			importSummary.append(String.format("All %s names are unique", nameType.toLowerCase()));
 		}
 	}
 	
