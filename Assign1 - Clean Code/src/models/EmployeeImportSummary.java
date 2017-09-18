@@ -12,7 +12,7 @@ public class EmployeeImportSummary {
 	private static StringBuilder importSummary = new StringBuilder();
 	private static List<Employee> employees = new ArrayList<Employee>();
 	private static HashMap<String, Integer> nameCount = new HashMap<String, Integer>();
-	private static HashMap<String, PaySumByType> paySumByType = new HashMap<String, PaySumByType>();
+	private static HashMap<String, PaySum> paySumByType = new HashMap<String, PaySum>();
 	
 	public static String generateEmployeeImportSummary(List<Employee> importedEmployees) throws Exception{
 		if(importedEmployees.size() == 0){
@@ -96,10 +96,10 @@ public class EmployeeImportSummary {
 	
 	private static void mapEmployeeSalaryToAverage(Employee empl){
 		if(paySumByType.containsKey(empl.getPayType())){
-			PaySumByType sum = paySumByType.get(empl.getPayType());
+			PaySum sum = paySumByType.get(empl.getPayType());
 			sum.addToSum(empl.getPayAmount());
 		}else{
-			PaySumByType newSum = new PaySumByType(empl.getPayAmount());
+			PaySum newSum = new PaySum(empl.getPayAmount());
 			paySumByType.put(empl.getPayType(), newSum);
 		}
 	}
@@ -152,11 +152,11 @@ public class EmployeeImportSummary {
 		}
 	}
 	
-	private static class PaySumByType{
+	private static class PaySum{
 		private int count;
 		private double sum;
 		
-		public PaySumByType(double initialValue){
+		public PaySum(double initialValue){
 			this.count = 1;
 			this.sum = initialValue;
 		}
