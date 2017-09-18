@@ -10,13 +10,18 @@ import models.Employee;
 import models.EmployeeImportSummary;
 
 /**
+ * This class imports employee record from a CSV file with the following format
  * 
+ * FORMAT: "first_name, last_name, age, pay_type, pay_amount"
+ * 
+ * Once the employees are successfully imported, a report is generated and returned
+ * as a string.
  * @author Kyle Widmann
  *
  */
 public class EmployeeRecordImporter {
 	
-	public static List<Employee> employees = new ArrayList<Employee>();
+	private static List<Employee> employees;
 	
 	private static Scanner recordScanner;
 	
@@ -27,12 +32,15 @@ public class EmployeeRecordImporter {
 	private static final int PAY_AMOUNT_INDEX = 4;
 	
 	/**
-	 * 
-	 * @param employeeRecordFilePath
-	 * @return
-	 * @throws Exception
+	 *This method takes a file path to a CSV file of employee records, imports the records, and then 
+	 *returns a string containing an import summary of all imported employees. 
+	 * @param employeeRecordFilePath - file path to CSV file to import
+	 * @return - A string representation of the import summary
+	 * @throws Exception - exception encountered during import process
 	 */
 	public static String importEmployeeRecordsFromFile(String employeeRecordFilePath) throws Exception{
+		
+		employees = new ArrayList<Employee>();
 		
 		importEmployees(employeeRecordFilePath);
 		

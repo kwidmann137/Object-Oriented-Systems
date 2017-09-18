@@ -1,5 +1,11 @@
 package models;
 
+
+/**
+ * This class represents an employee who was imported
+ * @author Kyle Widmann
+ *
+ */
 public class Employee {
 	private String firstName;
 	private String lastName;
@@ -8,19 +14,19 @@ public class Employee {
 	private double payAmount;
 	
 	/**
-	 * 
-	 * @param first
-	 * @param last
-	 * @param age
-	 * @param type
-	 * @param amt
+	 * The constructor for a newly imported employee
+	 * @param firstName - employees first name 
+	 * @param lastName - employees last name 
+	 * @param age - employees age
+	 * @param payType - employees pay type 
+	 * @param payAmount - employees pay amount 
 	 */
-	public Employee (String first, String last, int age, String type, double amt){
-		this.setFirstName(first);
-		this.setLastName(last);
+	public Employee (String firstName, String lastName, int age, String payType, double payAmount){
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
 		this.setAge(age);
-		this.setPayType(type);
-		this.setPayAmount(amt);
+		this.setPayType(payType);
+		this.setPayAmount(payAmount);
 	}
 
 	public String getFirstName() {
@@ -64,8 +70,9 @@ public class Employee {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * This method returns an employees information formatted as a row
+	 * for the EmployeeImportSummary class.
+	 * @return string representation of employee info as table row
 	 */
 	public String printEmployeeInformationAsTableRow(){
 		return String.format("%-30s %-3d  %-12s $%12.2f\n", firstName + " " + lastName, age
